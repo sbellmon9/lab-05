@@ -1,7 +1,7 @@
 ---
 title: "Lab 05 - La Quinta is Spanish for next to Denny's, Pt. 2"
-author: "Insert your name here"
-date: "Insert date here"
+author: "Shatavia Bellmon"
+date: "2/23/26"
 output: github_document
 ---
 
@@ -20,10 +20,29 @@ laquinta <- read_csv("data/laquinta.csv")
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
+```{r}
+dn <- dennys
+```
+
+```{r}
+dn_ak <- dn %>%
+  filter(state == "AK")
+nrow(dn_ak)
+```
+
+#There are three Denny's in Alaska.
+
+```{r}
+lq <- laquinta
+```
+
+```{r}
+lq_ak <- lq %>%
+  filter(state == "AK")
+nrow(lq_ak)
+```
+
+#There are two Laquintas in Alaska.
 
 ### Exercise 2
 
