@@ -91,7 +91,7 @@ haversine <- function(long1, lat1, long2, lat2, round = 3) {
 
 ```{r}
 dn_lq_ak <- dn_lq_ak %>%
-  mutate(distance = haversine(longitude.x, latitude.x, longitude.y, longitude.y))
+  mutate(distance = haversine(longitude.x, latitude.x, longitude.y, latitude.y))
 ```
 
 ### Exercise 7
@@ -115,16 +115,161 @@ ggplot(dn_lq_ak_min, aes(x = closest_distance)) +
        x = "Distance (km)", y = "Count")
 ```
 
-The distribution of distances between Denny's and the nearest La Quinta in Alaska is left skewed with a greater distance being more prevalent amoung the different locations, 
+The distribution of distances between Denny's and the nearest La Quinta in Alaska is left skewed indicating a higher concentration of distances near the maximum value. 
 
 View(dn_lq_ak)
 
-### Exercise 9
+### Exercise 9 - NC
+
+View(dennys)
+
+View(laquinta)
+
+```{r}
+dn_nc <- dn %>%
+  filter(state == "NC")
+nrow(dn_nc)
+```
+
+```{r}
+lq_nc <- lq %>%
+  filter(state == "NC")
+nrow(lq_nc)
+```
+
+```{r}
+num_parings <- nrow(dn_nc) * nrow((lq_nc))
+```
+
+```{r}
+dn_lq_nc <- full_join(dn_nc, lq_nc,
+  by = "state"
+)
+dn_lq_nc
+```
+
+```{r}
+dn_lq_nc <- dn_lq_nc %>%
+  mutate(distance = haversine(longitude.x, latitude.x, longitude.y, latitude.y))
+```
+
+```{r}
+dn_lq_nc_min <- dn_lq_nc %>%
+  group_by(address.x) %>%
+  summarize(closest_distance = min(distance))
+```
+
+```{r}
+summary(dn_lq_nc_min$closest_distance)
+```
+
+```{r}
+ggplot(dn_lq_nc_min, aes(x = closest_distance)) +
+  geom_histogram(binwidth = 5, fill = "pink", color = "purple") +
+  labs(title = "Distance to Nearest La Quinta from Denny's - North Carolina)", 
+       x = "Distance (km)", y = "Count")
+```
+
+### Exercise 10 - Texas
+
+```{r}
+dn_tx <- dn %>%
+  filter(state == "TX")
+nrow(dn_tx)
+```
+
+```{r}
+lq_tx <- lq %>%
+  filter(state == "TX")
+nrow(lq_tx)
+```
+
+```{r}
+num_parings <- nrow(dn_tx) * nrow((lq_tx))
+```
+
+```{r}
+dn_lq_tx <- full_join(dn_tx, lq_tx,
+  by = "state"
+)
+dn_lq_tx
+```
+
+```{r}
+dn_lq_tx <- dn_lq_tx %>%
+  mutate(distance = haversine(longitude.x, latitude.x, longitude.y, latitude.y))
+```
+
+```{r}
+dn_lq_tx_min <- dn_lq_tx %>%
+  group_by(address.x) %>%
+  summarize(closest_distance = min(distance))
+```
+
+```{r}
+summary(dn_lq_tx_min$closest_distance)
+```
+
+```{r}
+ggplot(dn_lq_tx_min, aes(x = closest_distance)) +
+  geom_histogram(binwidth = 5, fill = "green", color = "yellow") +
+  labs(title = "Distance to Nearest La Quinta from Denny's - Texas)", 
+       x = "Distance (km)", y = "Count")
+```
+
+The distribution of distances between Denny's and the nearest La Quinta in Texas is right skewed indicating a higher concentration of distances near the minimum value. 
 
 
-### Exercise 10
+### Exercise 11 - Georgia
+
+```{r}
+dn_ga <- dn %>%
+  filter(state == "GA")
+nrow(dn_ga)
+```
+
+```{r}
+lq_ga <- lq %>%
+  filter(state == "GA")
+nrow(lq_ga)
+```
+
+```{r}
+num_parings <- nrow(dn_ga) * nrow((lq_ga))
+```
+
+```{r}
+dn_lq_ga <- full_join(dn_ga, lq_ga,
+  by = "state"
+)
+dn_lq_ga
+```
+
+```{r}
+dn_lq_ga <- dn_lq_ga %>%
+  mutate(distance = haversine(longitude.x, latitude.x, longitude.y, latitude.y))
+```
+
+```{r}
+dn_lq_ga_min <- dn_lq_ga %>%
+  group_by(address.x) %>%
+  summarize(closest_distance = min(distance))
+```
+
+```{r}
+summary(dn_lq_ga_min$closest_distance)
+```
+
+```{r}
+ggplot(dn_lq_ga_min, aes(x = closest_distance)) +
+  geom_histogram(binwidth = 5, fill = "orange", color = "pink") +
+  labs(title = "Distance to Nearest La Quinta from Denny's - Georgia)", 
+       x = "Distance (km)", y = "Count")
+```
+
+The distribution of distances between Denny's and the nearest La Quinta in Georgia is right skewed indicating a higher concentration of distances near the minimum value. 
 
 
-### Exercise 11
+### Exercise 12
 
-
+Mitch Hedberg’s joke held true for the state of Texas because they have the greatest amount of Dennys and La Quintas with a short distance between them.
