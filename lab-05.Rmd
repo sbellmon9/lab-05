@@ -30,7 +30,7 @@ dn_ak <- dn %>%
 nrow(dn_ak)
 ```
 
-#There are three Denny's in Alaska.
+There are three Denny's in Alaska.
 
 ```{r}
 lq <- laquinta
@@ -42,29 +42,59 @@ lq_ak <- lq %>%
 nrow(lq_ak)
 ```
 
-#There are two Laquintas in Alaska.
+There are two Laquintas in Alaska.
 
 ### Exercise 2
 
-Remove this text, and add your answer for Exercise 1 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
+```{r}
+num_parings <- nrow(dn_ak) * nrow((lq_ak))
+```
+
+There needs to be 6 parings.
 
 ### Exercise 3
 
-...
+```{r}
+dn_lq_ak <- full_join(dn_ak, lq_ak,
+  by = "state"
+)
+dn_lq_ak
+```
+
 
 ### Exercise 4
 
-...
+View(dn_lq_ak)
+
+There are six observations in the dn_lq_ak data frame. The variables in this data frame are address.x, city.x, state, zip.x, longitude.x, latitude.x, address.y, city.y, zip.y, longitude.y, and latitude.y.
 
 ### Exercise 5
 
-...
+```{r}
+haversine <- function(long1, lat1, long2, lat2, round = 3) {
+  # convert to radians
+  long1 <- long1 * pi / 180
+  lat1 <- lat1 * pi / 180
+  long2 <- long2 * pi / 180
+  lat2 <- lat2 * pi / 180
+
+  R <- 6371 # Earth mean radius in km
+
+  a <- sin((lat2 - lat1) / 2)^2 + cos(lat1) * cos(lat2) * sin((long2 - long1) / 2)^2
+  d <- R * 2 * asin(sqrt(a))
+
+  return(round(d, round)) # distance in km
+}
+```
 
 ### Exercise 6
 
 ...
 
-Add exercise headings as needed.
+### Exercise 7
+
+
+### Exercise 8
+
+
+### Exercise 9
