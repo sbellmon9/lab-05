@@ -273,3 +273,5 @@ The distribution of distances between Denny's and the nearest La Quinta in Georg
 ### Exercise 12
 
 Mitch Hedberg’s joke held true for the state of Texas because they have the greatest amount of Dennys and La Quintas with a short distance between them.
+
+Finished Results

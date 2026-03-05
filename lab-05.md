@@ -409,3 +409,5 @@ distances near the minimum value.
 Mitch Hedberg’s joke held true for the state of Texas because they have
 the greatest amount of Dennys and La Quintas with a short distance
 between them.
+
+Finished Results
